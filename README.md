@@ -3,10 +3,13 @@ Checkout the Backend:
 
 [OSI-approved License](./LICENSE)
 
-## Solution Pattern: The Frontend
-
-
+Pull Docker Image: <https://docker.io/bayurzx/autodocs-auth-autodocs-app> or
+<https://hub.docker.com/r/bayurzx/autodocs-auth-autodocs-app>
 ![AutoDocs Architectual Diagram](./AutoDocs%20AI%20(1).png)
+
+---
+
+## Solution Pattern: The Frontend
 
 To deploy the AutoDocs AI frontend, we'll utilize Knative Serving and deploy a Docker image containing our Next.js application. Follow these steps to set up the frontend:
 
