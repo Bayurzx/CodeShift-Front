@@ -1,7 +1,9 @@
-## Solution Pattern: The Frontend
-
 Checkout the Backend:
 <https://github.com/Bayurzx/CodeShift-Back>
+
+[OSI-approved License](./LICENSE)
+
+## Solution Pattern: The Frontend
 
 
 ![AutoDocs Architectual Diagram](./AutoDocs%20AI%20(1).png)
