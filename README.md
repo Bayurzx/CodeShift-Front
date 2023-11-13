@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Solution Pattern: The Frontend
 
-## Getting Started
+![AutoDocs Architectual Diagram](./AutoDocs%20AI%20(1).png)
 
-First, run the development server:
+To deploy the AutoDocs AI frontend, we'll utilize Knative Serving and deploy a Docker image containing our Next.js application. Follow these steps to set up the frontend:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. **Clone the Next.js App from GitHub:**
+   Clone the Next.js application code from the GitHub repository to your local machine.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Set Up GitHub OAuth App:**
+   - Create a GitHub OAuth App in your GitHub account settings.
+   - Obtain the following information:
+     - `GITHUB_CLIENT_ID`
+     - `GITHUB_CLIENT_SECRET`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Configure NextAuth for Authentication:**
+   - Set up authentication for the Next.js app using NextAuth.
+   - Add the following configurations:
+     - `NEXTAUTH_SECRET` (a random JWT secret)
+     - `NEXTAUTH_URL` (e.g., http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. **Configure AstraDB Integration:**
+   - Add the AstraDB configurations to enable data storage and retrieval in the frontend.
+     - `ASTRA_DB_ID`
+     - `ASTRA_DB_REGION`
+     - `ASTRA_DB_APPLICATION_TOKEN`
 
-## Learn More
+5. **Build and Package the Docker Image:**
+   - Build a Docker image containing the Next.js app and its dependencies.
+   - Tag the image appropriately for deployment.
 
-To learn more about Next.js, take a look at the following resources:
+6. **Push Docker Image to a Container Registry:**
+   - Push the Docker image to a container registry of your choice (e.g., Docker Hub, Google Container Registry).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+7. **Deploy the Next.js App to Knative Serving:**
+   - Use Knative Serving to deploy the Next.js app. Specify the image and configuration details.
+     ```bash
+     kn service create autodocs-frontend --image=<your-docker-image>
+     ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+8. **Expose the Frontend Service:**
+   - Expose the Knative service to make it accessible externally.
+     ```bash
+     kn service expose autodocs-frontend
+     ```
 
-## Deploy on Vercel
+9. **Access the Frontend:**
+   - After successful deployment and exposure, access the frontend application using the provided URL.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+By following these steps, you'll have a fully functional AutoDocs AI frontend deployed on Knative Serving, leveraging the power of Next.js for a dynamic and responsive user interface. The integration with GitHub OAuth and AstraDB ensures secure authentication and efficient data management within the application.
